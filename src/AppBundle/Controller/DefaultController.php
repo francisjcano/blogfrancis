@@ -17,6 +17,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/", name="blog")
+     * @Route("/blog", name="blog")
      */
     public function blogAction(Request $request)
     {
