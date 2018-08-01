@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block title %}Noticia {{n.id}}{% endblock %}
+
+	{% block body %}
+
+		<section id="content-wrap" class="blog-single">
+			<div class="row">
+				<div class="col-twelve">
+
+					<article class='format-standard'>  
+
+						<div class='content-media'>
+							<div class='post-thumb'>
+								<img src="{{ asset(n.imagen) }}"> 
+							</div>  
+						</div>
+
+						<div class='primary-content'>
+
+							<h1 class='page-title'>{{ n.titulo }} </h1>	
+
+							<ul class='entry-meta'>
+								<li class='date'>{{ n.fechaHora|date('d/m/y') }}</li>						
+								<li class='cat'><a href=''>Wordpress</a><a href=''>Design</a></li>				
+							</ul>						
+
+							<p class='lead'>{{ n.descripcion }}</p> 
+
+							<p>	</p>
+						</div> 
+					</article>
+
+				</div>
+
+			</div>
+
+		<div class="pagenav group">
+			<div class="prev-nav col-four tab-full">
+				<a href="{{ url_atras}}" rel="prev">
+					<span class="">Anterior</span>
+				</a>
+			</div>
+</div>
+
+		{% endblock %}

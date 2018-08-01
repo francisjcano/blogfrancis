@@ -1,0 +1,9 @@
+.oculto{
+    font-size: 1.5rem;
+    line-height: 3rem;
+    font-family: "muli-regular", sans-serif;
+    display: block;
+    margin-bottom: 1.5rem;
+    color: #999999;
+    text-decoration: line-through;
+}

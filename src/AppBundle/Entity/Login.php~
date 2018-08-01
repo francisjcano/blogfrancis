@@ -1,0 +1,40 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Login
+ *
+ * @ORM\Table(name="login")
+ * @ORM\Entity
+ */
+class Login
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idlogin", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idlogin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usuario", type="string", length=45, nullable=false)
+     */
+    private $usuario;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=45, nullable=false)
+     */
+    private $password;
+
+
+}
+
