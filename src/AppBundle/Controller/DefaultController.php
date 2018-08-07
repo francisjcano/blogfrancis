@@ -16,8 +16,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="blog")
-     * @Route("/blog", name="blog")
+     * @Route("/", name="blog")     
      */
     public function blogAction(Request $request)
     {
@@ -40,7 +39,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/blog.{_format}", name="_json_xml" , requirements={"_format": "json|xml"})
+     * @Route("/noticias.{_format}", name="_json_xml" , requirements={"_format": "json|xml"})
      */
     public function noticiasJsonXmlAction($_format)
     {
@@ -48,6 +47,32 @@ class DefaultController extends Controller
         //exit();
         $repository = $this->getDoctrine()->getRepository('AppBundle:Articulos');
         $tareas = $repository->findAllOrderedByDescripcion();
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $jsonContenido = $serializer->serialize($tareas , $_format);
+
+
+        $response = new Response();
+        $response->headers->set('Content-type', 'application/'.$_format);
+        $response->setContent($jsonContenido);
+        return $response;
+    }
+
+
+
+    /**
+     * @Route("/noticia.{_format}/{id}", name="noticia_json_xml" , requirements={"_format": "json|xml", "id"="\d+"})
+     */
+    public function noticiaJsonXmlAction($_format)
+    {
+        //echo $_format;
+        //exit();
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Articulos');
+        $tareas = $repository->findOneById($id);
 
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
