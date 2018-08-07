@@ -46,7 +46,7 @@ class DefaultController extends Controller
         //echo $_format;
         //exit();
         $repository = $this->getDoctrine()->getRepository('AppBundle:Articulos');
-        $tareas = $repository->findAllOrderedByDescripcion();
+        $tareas = $repository->findAllOrderedByfechaHora();
 
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
@@ -67,7 +67,7 @@ class DefaultController extends Controller
     /**
      * @Route("/noticia.{_format}/{id}", name="noticia_json_xml" , requirements={"_format": "json|xml", "id"="\d+"})
      */
-    public function noticiaJsonXmlAction($_format)
+    public function noticiaJsonXmlAction($_format, $id)
     {
         //echo $_format;
         //exit();
